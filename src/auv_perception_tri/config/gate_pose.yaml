@@ -1,0 +1,35 @@
+gate_pose:
+  ros__parameters:
+    calib_file: ""                     # set by launch
+    camera_frame: camera_optical_frame
+    odom_frame: odom
+    use_keypoints: true                # false -> bbox-centre position only (no pose model needed)
+    model_points: [-1.525, -0.76, 0.0,   1.525, -0.76, 0.0,   1.525, 0.76, 0.0,   -1.525, 0.76, 0.0]
+    keypoint_ids: [0, 1, 2, 3]
+    min_kpt_conf: 0.30
+    min_score: 0.40
+    min_baseline_m: 0.05               # new keyframe every 5 cm of motion (~5 frames at 0.3 m/s)
+    window: 80
+    max_age_s: 15.0
+    min_obs: 6
+    min_parallax_deg: 4.0              # reject depth from near-parallel rays
+    resid_px: 6.0
+    solve_rate_hz: 5.0
+    tf_timeout_s: 0.05
+    max_range: 20.0
+    fit_tol_m: 0.25                    # Kabsch rms vs FBX model; larger = bad keypoints/EKF drift
+    orient_sigma: 0.15
+
+gate_tracker:
+  ros__parameters:
+    odom_frame: odom
+    base_frame: base_link
+    publish_rate: 30.0
+    gate_chi2: 11.34
+    max_rejects: 10
+    process_noise: 1.0e-4
+    orient_alpha: 0.2
+    use_orientation: true              # set false when use_keypoints is false above
+    lost_timeout_s: 5.0
+    tf_timeout_s: 0.05
+    meas_cov_scale: 20.0               # solves share a sliding window -> heavily correlated

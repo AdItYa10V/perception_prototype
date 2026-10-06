@@ -1,0 +1,16 @@
+image_enhancement:
+  ros__parameters:
+    input_topic: /camera/image_raw        # overridden by launch arg
+    output_topic: /perception/image_enhanced
+    camera_info_topic: /perception/camera_info
+    calib_file: ""                        # overridden by launch arg
+    camera_frame: camera_optical_frame
+    scale: 0.5              # 1920x1080 -> 960x540 (cheap on CPU, plenty for 640-wide YOLO)
+    camera_latency_s: 0.12  # action-cam pipeline delay; MEASURE IT (blink LED / IMU tap test)
+    red_compensation: true
+    red_alpha: 1.0
+    clahe_clip: 2.0
+    clahe_tile: 8
+    gamma: 1.0
+    skip_n: 1               # 2 = process 15 fps if you need more CPU headroom
+    cv_threads: 2           # keep OpenCV off the cores ORB-SLAM3 uses

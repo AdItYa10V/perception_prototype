@@ -1,0 +1,12 @@
+gate_detector:
+  ros__parameters:
+    image_topic: /perception/image_enhanced
+    model_path: ""          # overridden by launch arg (defaults to models/gate_model.engine)
+    imgsz: [384, 640]       # H, W. Export the engine with the SAME rectangular size
+    conf: 0.40
+    iou: 0.50
+    max_det: 3
+    device: 0
+    half: true
+    use_keypoints: false    # true for pnp / tri packages (needs a YOLO11n-pose model)
+    publish_debug: false

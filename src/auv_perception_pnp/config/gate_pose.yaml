@@ -1,0 +1,31 @@
+gate_pose:
+  ros__parameters:
+    calib_file: ""                     # set by launch
+    camera_frame: camera_optical_frame
+    # Gate-frame coordinates (m) of each detector keypoint, flattened x,y,z per row.
+    # Frame: origin = gate centre, x right, y down, z = away from viewer. REPLACE from the FBX.
+    # Row order MUST equal the keypoint order the pose model was trained with: TL, TR, BR, BL.
+    model_points: [-1.525, -0.76, 0.0,   1.525, -0.76, 0.0,   1.525, 0.76, 0.0,   -1.525, 0.76, 0.0]
+    keypoint_ids: [0, 1, 2, 3]
+    min_kpt_conf: 0.30
+    min_points: 4
+    max_reproj_px: 6.0                 # measured on the 960x540 stream
+    min_range: 0.5
+    max_range: 15.0
+    pos_sigma_frac: 0.05               # position sigma = 5% of range (depth axis x2)
+    orient_sigma: 0.2
+    ambiguity_ratio: 1.5
+
+gate_tracker:
+  ros__parameters:
+    odom_frame: odom
+    base_frame: base_link
+    publish_rate: 30.0
+    gate_chi2: 11.34                   # 99% for 3 DoF
+    max_rejects: 10
+    process_noise: 1.0e-4              # m^2/s of EKF drift allowed
+    orient_alpha: 0.2
+    use_orientation: true
+    lost_timeout_s: 3.0
+    tf_timeout_s: 0.05
+    meas_cov_scale: 4.0

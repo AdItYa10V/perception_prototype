@@ -1,0 +1,14 @@
+gate_pose:
+  ros__parameters:
+    min_score: 0.40
+    select: score          # 'score' | 'largest'
+    gate_width_m: 3.05     # only used for the rough range estimate - set from your FBX/rulebook
+    aim_offset_x: 0.0      # aim slightly off-centre (e.g. to pass one side of the divider)
+    aim_offset_y: 0.0
+
+gate_tracker:
+  ros__parameters:
+    coast_s: 0.5           # keep predicting this long after the last detection
+    q: 2.0                 # process noise: higher = follows fast motion, noisier
+    r: 0.0025              # measurement variance in normalized units (0.05 ~ 2.5% of half-width)
+    publish_rate: 30.0

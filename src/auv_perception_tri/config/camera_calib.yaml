@@ -1,0 +1,8 @@
+# PLACEHOLDER - replace with an UNDERWATER calibration of the action cam,
+# at the exact FOV mode you dive with (flat port + water changes focal length ~1.33x).
+# Calibrated at full 1920x1080; the nodes rescale K for downscaled streams.
+model: pinhole        # 'pinhole' (Linear FOV mode, radial D) or 'fisheye' (4 coeffs)
+width: 1920
+height: 1080
+K: [1100.0, 0.0, 960.0, 0.0, 1100.0, 540.0, 0.0, 0.0, 1.0]
+D: [0.0, 0.0, 0.0, 0.0, 0.0]
